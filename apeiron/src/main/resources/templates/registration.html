@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Регистрация</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+	
+</script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/css/registration.css">
+<link rel="shortcut icon" href="/resources/images/favicon.png"
+	type="image/png">
+</head>
+<body>
+	<br>
+	<div class="center">
+		<img src="/images/logo_a.png">
+	</div>
+	<h1 class="center">Регистрация в APEIRON</h1>
+	<div class="center">
+		<div id="adduserform">
+			<div class=" center alert alert-danger" th:if="${suchUserExists}">
+				Пользователь с таким логином уже существует</div>
+			<div class=" center alert alert-danger" th:if="${unsupportedSymbols}">
+				Логин содержит неподдерживаемые символы</div>
+			<form th:action="@{/registration}" method="post">
+				<label for="email"><b>Логин:</b></label>
+				<div>
+					<input type="text" placeholder="Username" aria-label="Username"
+						name="login" aria-describedby="basic-addon1">
+				</div>
+				<div>
+					<label for="email"><b>E-mail:</b></label> <input type="email"
+						name="email" id="email" required autofocus />
+				</div>
+				<div>
+					<label for="exampleInputPassword1"><b>Пароль:</b></label> <input
+						type="password" name="password" id="exampleInputPassword1"
+						placeholder="Password">
+				</div>
+				<div role="group" aria-label="Basic example">
+					<div class="center">
+						<div class=" center alert alert-danger"
+							th:if="${captchaError!=null}">Подтвердите, что вы не робот!
+						</div>
+					</div>
+					<div class="center">
+						<div class="g-recaptcha"
+							data-sitekey="6LcDYa4UAAAAAEeTMx0Cd7s_BK6RBepT0YoVs8uq"></div>
+					</div>
+					<div class="center">
+
+						<button type="submit">Зарегистрироваться</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
